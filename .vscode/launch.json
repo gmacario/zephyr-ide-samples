@@ -12,36 +12,64 @@
         }
     ],
   "configurations": [
-    
     {
       "name": "Zephyr IDE: Debug",
       "cwd": "${workspaceFolder}",
       "gdbPath": "${command:zephyr-ide.get-gdb-path}",
-      "executable": "${command:zephyr-ide.get-active-build-path}/zephyr/zephyr.elf",
+      "executable": "${command:zephyr-ide.get-zephyr-elf}",
       "request": "launch",
       "type": "cortex-debug",
-      "servertype": "bmp",
-      "interface": "swd",
-      "device": "STM32F103",
-      "BMPGDBSerialPort": "${input:getCustomBuildVariable}",
-      "preLaunchCommands": [
-        "monitor rtt enable"
-      ]
-    },
-    {
-      "name": "Zephyr IDE: Attach",
-      "cwd": "${workspaceFolder}",
-      "gdbPath": "${command:zephyr-ide.get-gdb-path}",
-      "executable": "${command:zephyr-ide.get-active-build-path}/zephyr/zephyr.elf",
-      "request": "launch",
-      "type": "cortex-debug",
-      "servertype": "bmp",
-      "interface": "swd",
-      "device": "STM32F103",
-      "BMPGDBSerialPort": "${config:bmp_serial_port}",
-      "preLaunchCommands": [
-        "monitor rtt enable"
-      ]
+      "servertype": "openocd",
+      "configFiles": [
+        "interface/stlink.cfg",
+        "target/nrf52.cfg"
+      ],
+      "rtos": "Zephyr",
+      "searchDir": [],
+      "runToEntryPoint": "main",
+      "showDevDebugOutput": "none",
+      "rttConfig": {
+        "enabled": true,
+        "address": "auto",
+        "rtt_start_retry": 1000,
+        "decoders": [
+          {
+            "label": "RTT channel 0",
+            "port": 0,
+            "type": "console"
+          }
+        ]
+      }
     }
+    // {
+    //   "name": "Zephyr IDE: Debug",
+    //   "cwd": "${workspaceFolder}",
+    //   "gdbPath": "${command:zephyr-ide.get-gdb-path}",
+    //   "executable": "${command:zephyr-ide.get-active-build-path}/zephyr/zephyr.elf",
+    //   "request": "launch",
+    //   "type": "cortex-debug",
+    //   "servertype": "bmp",
+    //   "interface": "swd",
+    //   "device": "STM32F103",
+    //   "BMPGDBSerialPort": "${input:getCustomBuildVariable}",
+    //   "preLaunchCommands": [
+    //     "monitor rtt enable"
+    //   ]
+    // },
+    // {
+    //   "name": "Zephyr IDE: Attach",
+    //   "cwd": "${workspaceFolder}",
+    //   "gdbPath": "${command:zephyr-ide.get-gdb-path}",
+    //   "executable": "${command:zephyr-ide.get-active-build-path}/zephyr/zephyr.elf",
+    //   "request": "launch",
+    //   "type": "cortex-debug",
+    //   "servertype": "bmp",
+    //   "interface": "swd",
+    //   "device": "STM32F103",
+    //   "BMPGDBSerialPort": "${config:bmp_serial_port}",
+    //   "preLaunchCommands": [
+    //     "monitor rtt enable"
+    //   ]
+    // }
   ]
 }
