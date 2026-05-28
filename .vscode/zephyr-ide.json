@@ -79,6 +79,42 @@
               "runner": "stm32cubeprogrammer",
               "name": "stm32cubeprogrammer",
               "args": ""
+            },
+            "openocd-stm32": {
+              "runner": "openocd",
+              "name": "openocd-stm32",
+              "args": ""
+            }
+          }
+        },
+        "build/stm32f4_disco/stm32f407xx": {
+          "relBoardSubDir": "st/stm32f4_disco",
+          "board": "stm32f4_disco/stm32f407xx",
+          "name": "build/stm32f4_disco/stm32f407xx",
+          "debugOptimization": "Debug",
+          "westBuildArgs": [],
+          "westBuildCMakeArgs": [
+            "-DCONFIG_DEBUG_OPTIMIZATIONS=y",
+            "-DCONFIG_DEBUG_THREAD_INFO=y"
+          ],
+          "confFiles": {
+            "config": [],
+            "overlay": []
+          },
+          "launchTarget": "Zephyr IDE: Debug",
+          "buildDebugTarget": "Zephyr IDE: Debug",
+          "attachTarget": "Zephyr IDE: Attach",
+          "completed": true,
+          "runnerConfigs": {
+            "stlink_gdbserver": {
+              "runner": "stlink_gdbserver",
+              "name": "stlink_gdbserver",
+              "args": ""
+            },
+            "jlink": {
+              "runner": "jlink",
+              "name": "jlink",
+              "args": ""
             }
           }
         }
