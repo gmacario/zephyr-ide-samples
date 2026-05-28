@@ -5,5 +5,6 @@
   "zephyr-ide.use-zephyr-ide-json": true,
   "zephyr-ide.projects": null,
   "devicetree.zephyr": "${workspaceFolder}\\external\\zephyr",
-  "kconfig.zephyr.base": "${workspaceFolder}\\external\\zephyr"
+  "kconfig.zephyr.base": "${workspaceFolder}\\external\\zephyr",
+  "terminal.integrated.defaultProfile.linux": "Zephyr IDE Terminal"
 }
