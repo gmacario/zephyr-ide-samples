@@ -22,7 +22,7 @@
       "servertype": "openocd",
       "configFiles": [
         "interface/stlink.cfg",
-        "target/nrf52.cfg"
+        "target/stm32wbx.cfg"
       ],
       "rtos": "Zephyr",
       "searchDir": [],
