@@ -75,9 +75,9 @@
           "attachTarget": "Zephyr IDE: Attach",
           "completed": true,
           "runnerConfigs": {
-            "stm32cubeprogrammer": {
-              "runner": "stm32cubeprogrammer",
-              "name": "stm32cubeprogrammer",
+            "openocd": {
+              "runner": "openocd",
+              "name": "openocd",
               "args": ""
             }
           }
