@@ -92,10 +92,10 @@
             }
           }
         },
-        "build/stm32f4_disco/stm32f407xx": {
-          "relBoardSubDir": "st/stm32f4_disco",
-          "board": "stm32f4_disco/stm32f407xx",
-          "name": "build/stm32f4_disco/stm32f407xx",
+        "build/nucleo_h723zg/stm32h723xx": {
+          "relBoardSubDir": "st/nucleo_h723zg",
+          "board": "nucleo_h723zg/stm32h723xx",
+          "name": "build/nucleo_h723zg/stm32h723xx",
           "debugOptimization": "Debug",
           "westBuildArgs": [],
           "westBuildCMakeArgs": [
@@ -111,14 +111,9 @@
           "attachTarget": "Zephyr IDE: Attach",
           "completed": true,
           "runnerConfigs": {
-            "stlink_gdbserver": {
-              "runner": "stlink_gdbserver",
-              "name": "stlink_gdbserver",
-              "args": ""
-            },
-            "jlink": {
-              "runner": "jlink",
-              "name": "jlink",
+            "openocd": {
+              "runner": "openocd",
+              "name": "openocd",
               "args": ""
             }
           }
@@ -126,7 +121,12 @@
       },
       "twisterConfigs": {},
       "confFiles": {
-        "config": [],
+        "config": [
+          {
+            "path": "hello_world2/prj_dashboard.conf",
+            "extra": true
+          }
+        ],
         "overlay": []
       }
     }

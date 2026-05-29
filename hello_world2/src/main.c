@@ -4,7 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+#include <inttypes.h>
 #include <stdio.h>
+#include <zephyr/drivers/led.h>
+#include <zephyr/input/input.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
 #include <zephyr/logging/log_ctrl.h>
@@ -15,6 +18,14 @@
 // LOG_MODULE_REGISTER(foo, CONFIG_FOO_LOG_LEVEL);
 LOG_MODULE_REGISTER(main);
 
+#define LED0_NODE DT_ALIAS(led0)
+
+// #if DT_NODE_HAS_STATUS_OKAY(DT_PARENT(LED0_NODE))
+// static const struct led_dt_spec led0 = LED_DT_SPEC_GET(LED0_NODE);
+// #else
+// static const struct led_dt_spec led0;
+// #endif
+
 static inline void foo(void)
 {
     //  LOG_MODULE_DECLARE(foo, CONFIG_FOO_LOG_LEVEL);
@@ -22,9 +33,28 @@ static inline void foo(void)
      LOG_INF("foo");
 }
 
+// See https://github.com/zephyrproject-rtos/zephyr/tree/main/samples/basic/button
+static void button_input_cb(struct input_event *evt, void *user_data)
+{
+	if (evt->sync == 0) {
+		return;
+	}
+
+	printk("Button %d %s at %" PRIu32 "\n",
+	       evt->code,
+	       evt->value ? "pressed" : "released",
+	       k_cycle_get_32());
+
+	// if (led0.dev != NULL) {
+	// 	led_set_brightness_dt(&led0, evt->value ? 100 : 0);
+	// }
+}
+
+INPUT_CALLBACK_DEFINE(NULL, button_input_cb, NULL);
+
 int main(void)
 {
-	printf("Hello World! %s\n", CONFIG_BOARD_TARGET);
+	printf("DEBUG: CONFIG_BOARD_TARGET=%s\n", CONFIG_BOARD_TARGET);
 
 #ifdef CONFIG_CONSOLE
 	printf("DEBUG: CONFIG_CONSOLE=%d\n", CONFIG_CONSOLE);
@@ -37,6 +67,15 @@ int main(void)
 #endif
 #ifdef CONFIG_LOG_PRINTK
 	printf("DEBUG: CONFIG_LOG_PRINTK=%d\n", CONFIG_LOG_PRINTK);
+#endif
+#ifdef CONFIG_GPIO
+	printf("DEBUG: CONFIG_GPIO=%d\n", CONFIG_GPIO);
+#endif
+#ifdef CONFIG_INPUT
+	printf("DEBUG: CONFIG_INPUT=%d\n", CONFIG_INPUT);
+#endif
+#ifdef CONFIG_LED
+	printf("DEBUG: CONFIG_LED=%d\n", CONFIG_LED);
 #endif
 
 	printk("This is a message from printk\n");
@@ -59,3 +98,5 @@ int main(void)
 
 	return 0;
 }
+
+// EOF
