@@ -67,7 +67,12 @@
             "-DCONFIG_DEBUG_THREAD_INFO=y"
           ],
           "confFiles": {
-            "config": [],
+            "config": [
+              {
+                "path": "hello_world2/prj_dashboard.conf",
+                "extra": true
+              }
+            ],
             "overlay": []
           },
           "launchTarget": "Zephyr IDE: Debug",
