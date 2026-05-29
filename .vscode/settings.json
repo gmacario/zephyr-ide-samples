@@ -1,9 +1,9 @@
 {
   "terminal.integrated.defaultProfile.windows": "Zephyr IDE Terminal",
-  "C_Cpp.default.compileCommands": "${workspaceFolder}\\.vscode\\compile_commands.json",
   "cmake.configureOnOpen": false,
   "zephyr-ide.use-zephyr-ide-json": true,
   "zephyr-ide.projects": null,
   "devicetree.zephyr": "${workspaceFolder}\\external\\zephyr",
-  "kconfig.zephyr.base": "${workspaceFolder}\\external\\zephyr"
+  "kconfig.zephyr.base": "${workspaceFolder}\\external\\zephyr",
+  "C_Cpp.intelliSenseEngine": "default"
 }
